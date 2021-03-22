@@ -43,10 +43,11 @@ for i = 1 : Nlevel
     err.DOF(i) = size(p,2); % include bdry DOFs   
     err.h(i) = h/2^(i-1); % uniform refinement ONLY 
     % Assemble the mass matrix M
-    [M, name{cnt}] = ch3_2DFEM_MassAssembler_v1(p,t); % _v2,... 
+    M = ch3_2DFEM_MassAssembler_v1_Stiles(p,t); % _v2,... 
     % Assemble the load vector b
-    [f, name{cnt+1}] = ch3_2DFEM_LoadAssembler_v1(p,t,loadf);
+    f = ch3_2DFEM_LoadAssembler_v1_Stiles(p,t,loadf);
     % Solve 
+    Pf = zeros()
     Pf = M\f; 
     % compute err.L2 and err.H1 if we know the "exact solution"
     [err.L2(i), name{cnt+2}] = ch3_2DFEM_L2err_v1(p,t,loadf,Pf);
