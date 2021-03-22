@@ -47,7 +47,6 @@ for i = 1 : Nlevel
     % Assemble the load vector b
     f = ch3_2DFEM_LoadAssembler_v1_Stiles(p,t,loadf);
     % Solve 
-    Pf = zeros()
     Pf = M\f; 
     % compute err.L2 and err.H1 if we know the "exact solution"
     [err.L2(i), name{cnt+2}] = ch3_2DFEM_L2err_v1(p,t,loadf,Pf);
